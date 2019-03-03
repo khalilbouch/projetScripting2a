@@ -1,28 +1,7 @@
 source graphique.sh
 
 if [[ $# -eq 0 ]]; then
-echo 1 - Afficher les informations memoire 
-echo 2 - Afficher les informations processeur 
-echo 3 - Afficher la version du noyau linux 
-echo 4 - Help
-echo 5 - Quitter
-
-echo "Donner votre choix"
-read a
-clear
-	while [[ $a -le 0 || $a -ge 6  ]]
-	do
-		echo "Choix incorrecte"
-		echo "donner votre choix"
-		read a
-	done
-		case $a in
-			1)	memoire ;;
-			2)	cpu ;;
-			3)	version ;;
-			4)	help ;;
-			5)	exit	
-		esac
+	menu
 	else
 		if [[ $1 = '-lmem' ]]; then
 			memoire
@@ -30,6 +9,8 @@ clear
 			cpu
 		elif [[ $1 = '-lkernel' ]]; then
 			version
+		elif [[ $1 = '-lpart' ]]; then
+			partition
 		elif [[ $1 = '-h' || $1 = '-help' ]]; then
 			help
 		elif [[ $1 = '-g' || $1 = '-G' ]]; then
@@ -43,6 +24,7 @@ clear
 					'-lmem')	memoire >> HistoriqueMemoire ;;
 					'-lcpu')	cpu >> HistoriqueCpu ;;
 					'-lkernel')	version >> HistoriqueVersion ;;
+					'-lpart' ) partition >> HistoriquePartition ;;
 					*)		echo Commande erronée 
 							exit ;;
 				esac

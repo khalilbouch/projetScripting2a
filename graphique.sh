@@ -19,9 +19,13 @@ if [[ $ret -eq 2 ]]; then
 fi
 
 case $action in
-    Memory*) ( yad --text-info memoire);;
+    Memory*)
+     memoire >> tmp.txt
+        yad --width=400 --height=200 --text-info --fore= red < tmp.txt  
+        rm tmp.txt
+        ;;
     CPU*) cpu ;;
-    Linux*) version ;;
+    Linux*) versionx ;;
     Help*) help ;;
     *) exit 1 ;;  
 esac
